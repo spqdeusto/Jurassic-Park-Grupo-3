@@ -1,5 +1,12 @@
 # Jurassic-Park-Grupo-3
 
+Integrantes:
+  Ane Bollo Oraá
+  Juan Cendoya Etxeberria
+  Olatz Gonzalez Santiago
+  Paul Hernandez Guridi
+
+
 Tecnología del proyecto:
 
   Backend:
