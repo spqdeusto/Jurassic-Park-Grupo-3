@@ -16,5 +16,5 @@ Tecnología del proyecto:
   Persistencia: mySQL
 
   Frontend:
-  Vue con el fronted Ionic
+  Vue3 con el fronted Ionic
 
