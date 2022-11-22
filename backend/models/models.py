@@ -5,7 +5,7 @@ class DinosaurRequest(BaseModel):
   species: str
   age: int
   weigh: int
-  sex: str
+  gender: str
   dangerousness: str
 
 class GetRequest(BaseModel):
