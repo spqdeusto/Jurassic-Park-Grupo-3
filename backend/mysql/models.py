@@ -9,17 +9,17 @@ class Dinosaur(Base):
   species = Column(String(25))
   age = Column(Integer)
   weigh = Column(Integer)
-  sex = Column(String(25))
+  gender = Column(String(25))
   dangerousness = Column(String(25))
 
 
   def __repr__(self) -> str:
-    return "<Dinosaur(id= '%d', name='%s', species='%s', age='%d', weigh='%d', sex='%s', dangerousness='%s')>" % (
+    return "<Dinosaur(id= '%d', name='%s', species='%s', age='%d', weigh='%d', gender='%s', dangerousness='%s')>" % (
       self.id,
       self.name,
       self.species,
       self.age,
       self.weigh,
-      self.sex,
+      self.gender,
       self.dangerousness,
     )
