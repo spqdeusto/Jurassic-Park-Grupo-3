@@ -40,4 +40,5 @@ services:
     volumes:
       - ./backend:/code/backend
     depends_on:
-      - condition: service_healthy
+      mysql_db:
+        condition: service_healthy
