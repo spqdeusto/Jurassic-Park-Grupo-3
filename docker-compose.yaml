@@ -22,7 +22,7 @@ services:
       - MYSQL_ROOT_PASSWORD=toor
 
   fastapi:
-    image: fast-api:latest
+    image: fast-api-example:latest
     container_name: fastapi
     restart: always
     ports: 
