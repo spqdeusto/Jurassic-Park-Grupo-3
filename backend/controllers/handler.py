@@ -5,7 +5,6 @@ from backend.mysql.mysql import DatabaseClient
 import backend.utils.vars as gb
 from sqlalchemy.orm import Session
 
-
 class Controllers:
   def __init__(self) -> None:
     pass
