@@ -23,10 +23,6 @@ class Dinosaur(Base):
       self.gender,
       self.dangerousness,
     )
-class TodoTerrenoRequest(BaseModel):
-  ruta:bool
-  numvisitantes:int
-  sistemaseguridad:bool
 
 class TodoTerreno(Base):
   __tablename__ = "todoterreno"
