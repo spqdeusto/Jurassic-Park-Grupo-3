@@ -8,11 +8,6 @@ class DinosaurRequest(BaseModel):
   gender: str
   dangerousness: str
 
-class RecintoRequest(BaseModel):
-  name: str
-  species: str
-  estado: bool
-  
 class GetRequest(BaseModel):
   id:int
   
