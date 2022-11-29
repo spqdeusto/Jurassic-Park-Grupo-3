@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Sequence, Boolean
+from sqlalchemy import Column, Integer, String, Sequence, Boolean, CheckConstraint
 from backend.mysql.base import Base
 
 
@@ -22,4 +22,20 @@ class Dinosaur(Base):
       self.weigh,
       self.gender,
       self.dangerousness,
+    )
+class TodoTerreno(Base):
+  __tablename__ = "todoterreno"
+  id = Column(Integer, Sequence("user_id_seq"), primary_key=True)
+  ruta=Column(Boolean(create_constraint=True), nullable=False)
+  numvisitantes=Column(Integer, CheckConstraint("numvisitantes > 1 AND numvisitantes < 6"))
+  sistemaseguridad=Column(Boolean(create_constraint=True), nullable=False)
+  #recinto = Column(String(100), ForeignKey("recinto.nme", ondelete="CASCADE"), nullable=False)
+
+
+  def __repr__(self) -> str:
+    return "<TodoTerreno(id= '%d', ruta='%b', numvisitantes='%d', sistemaseguridad='%b')>" % (
+      self.id,
+      self.ruta,
+      self.numvisitantes,
+      self.sistemaseguridad,
     )

@@ -8,6 +8,11 @@ class DinosaurRequest(BaseModel):
   gender: str
   dangerousness: str
 
+class TodoTerrenoRequest(BaseModel):
+  ruta:bool
+  numvisitantes:int
+  sistemaseguridad:bool
+
 class GetRequest(BaseModel):
   id:int
   

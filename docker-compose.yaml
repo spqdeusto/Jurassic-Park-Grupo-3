@@ -26,6 +26,13 @@ services:
       interval: 5s
       timeout: 5s
       retries: 55
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - test
       
   fastapi:
     image: fast-api-example:latest
