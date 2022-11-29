@@ -5,7 +5,7 @@ class Especie(BaseModel):
   class Config:
     orm_mode=True
 
-class DinosaurRequest(BaseModel):
+class Dinosaur(BaseModel):
   name: str
   species: int
   age: int
@@ -16,20 +16,20 @@ class DinosaurRequest(BaseModel):
   class Config:
     orm_mode=True
 
-class TodoTerrenoRequest(BaseModel):
+class TodoTerreno(BaseModel):
   ruta: bool
   numvisitantes: int
   sistemaseguridad: bool
-  recinto:str
+  recinto: str
   class Config:
     orm_mode=True
 
-class RecintoRequest(BaseModel):
+class Recinto(BaseModel):
   name: str
   species: str
   state: bool
-  dinosaurs=list[DinosaurRequest]=[]
-  todoterrenos=list[TodoTerrenoRequest]=[]
+  dinosaurs: list[Dinosaur]
+  todoterrenos: list[TodoTerreno]
   class Config:
     orm_mode=True
 
@@ -42,4 +42,4 @@ class DeleteRequest(BaseModel):
   
 class UpdateRequest(BaseModel):
   id: int
-  update: DinosaurRequest
+  update: Dinosaur

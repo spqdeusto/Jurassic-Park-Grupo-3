@@ -38,7 +38,7 @@ class Controllers:
       
     return dinosaur
   
-  def create_dinosaur(self, body: models.DinosaurRequest):
+  def create_dinosaur(self, body: models.Dinosaur):
     """
     Creates new dinosaur in  the database
     """

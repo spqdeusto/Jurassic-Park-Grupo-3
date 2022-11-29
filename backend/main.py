@@ -33,7 +33,7 @@ async def get_dinosaur(body: models.GetRequest):
   return controllers.get_dinosaur(body.id)
 
 @app.post('/dinosaur/create')
-async def create_dinosaur(body: models.DinosaurRequest):
+async def create_dinosaur(body: models.Dinosaur):
   return controllers.create_dinosaur(body)
 
 @app.post('/dinosaur/delete')
