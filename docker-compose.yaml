@@ -46,16 +46,13 @@ services:
       - MYSQL_URL=mysql://admin_db:admin_db@mysql-fastapi:3306/fastapi
     volumes:
       - ./backend:/code/backend
-    depends_on:
-      mysql_db:
-        condition: service_healthy
   
   vue:
     image: vue:latest
     container_name: vue
     restart: always
     ports:
-      - 8080:8080
+      - 4444:8080
     networks:
       - test
     volumes:
