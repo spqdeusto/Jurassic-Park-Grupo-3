@@ -49,3 +49,14 @@ services:
     depends_on:
       mysql_db:
         condition: service_healthy
+  
+  vue:
+    image: vue:latest
+    container_name: vue
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - test
+    volumes:
+      - ./frontend:/code/frontend
