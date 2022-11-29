@@ -3,6 +3,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
+backend/__pycache__
+backend/controllers/__pycache__
+backend/models/__pycache__
+backend/mysql/__pycache__
 
 # mysql
 mysql/
