@@ -56,9 +56,9 @@ class Recinto(Base):
 class TodoTerreno(Base):
   __tablename__ = "todoterreno"
   id = Column(Integer, Sequence("user_id_seq"), primary_key=True)
-  ruta=Column(Boolean(create_constraint=True), nullable=False)
+  ruta=Column(Boolean(create_constraint=True), nullable=False, default=False)
   numvisitantes=Column(Integer, CheckConstraint("numvisitantes > 1 AND numvisitantes < 6"))
-  sistemaseguridad=Column(Boolean(create_constraint=True), nullable=False)
+  sistemaseguridad=Column(Boolean(create_constraint=True), nullable=False, default=False)
 
   def __repr__(self) -> str:
     return "<TodoTerreno(id= '%d', ruta='%b', numvisitantes='%d', sistemaseguridad='%b')>" % (

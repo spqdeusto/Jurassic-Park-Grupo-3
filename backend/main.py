@@ -26,9 +26,25 @@ initialize()
 async def status():
   return controllers.status()
 
+@app.post('/recinto/down')
+async def shutdown(body: models.GetRequest):
+  return controllers.quit_electricity(body)
+
+@app.post('/recinto/up')
+async def shutdown(body: models.GetRequest):
+  return controllers.put_electricity(body)
+
 @app.get('/recintos')
 async def get_all_recintos():
   return controllers.get_recintos()
+
+@app.post('/jeep/ruta/up')
+async def shutdown(body: models.GetRequest):
+  return controllers.startRuta(body)
+
+@app.post('/jeep/ruta/down')
+async def shutdown(body: models.GetRequest):
+  return controllers.quitRuta(body)
 
 
 

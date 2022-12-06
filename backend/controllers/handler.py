@@ -9,12 +9,27 @@ class Controllers:
   def __init__(self) -> None:
     pass
   
-  def status(self):
-    """
-    Checks server status
-    """
-    return {"status": "ok"}
-
+  def startRuta(self, body: models.GetRequest):
+    
+    db = DatabaseClient(gb.MYSQL_URL)
+    with Session(db.engine) as session:
+      session.query(mysql_models.TodoTerreno).filter(mysql_models.TodoTerreno.id==body.id).update({"ruta": 1})
+      session.commit()
+      session.close()
+    
+    return self.check_status()
+  
+  def quitRuta(self, body: models.GetRequest):
+    
+    db = DatabaseClient(gb.MYSQL_URL)
+    with Session(db.engine) as session:
+      session.query(mysql_models.TodoTerreno).filter(mysql_models.TodoTerreno.id==body.id).update({"ruta": 0})
+      session.commit()
+      session.close()
+    self.jeepStateDown(body.id)
+    
+    return self.check_status()
+  
   def get_recintos(self):
 
     db = DatabaseClient(gb.MYSQL_URL)
@@ -22,8 +37,113 @@ class Controllers:
       recintos = session.query(mysql_models.Recinto).all()
       for recinto in recintos:
         recinto.dinosaurs = list(session.query(mysql_models.Dinosaur).where(mysql_models.Dinosaur.id==recinto.id))
+      session.close()
 
     return recintos
+  
+  def dangerousness(self):
+
+    recintos = self.get_recintos()
+
+    for recinto in recintos:
+      if(recinto.state==False):
+        for dino in recinto.dinosaurs:
+          if(dino.dangerousness==True):
+            return True
+
+    return False
+  
+  def get_jeeps(self):
+
+    db = DatabaseClient(gb.MYSQL_URL)
+    with Session(db.engine) as session:
+      jeeps = session.query(mysql_models.TodoTerreno).all()
+      session.close()
+
+    return jeeps
+
+  def jeepsEnRuta(self):
+    
+    enRuta = []
+    jeeps = self.get_jeeps()
+
+    for jeep in jeeps:
+      if(jeep.ruta):
+        enRuta.append(jeep)
+    
+    return enRuta
+  
+  def jeepStateUp(self):
+
+    enRuta = self.jeepsEnRuta()
+    db = DatabaseClient(gb.MYSQL_URL)
+    with Session(db.engine) as session:
+      for jeep in enRuta:
+        session.query(mysql_models.TodoTerreno).filter(mysql_models.TodoTerreno.id==jeep.id).update({"sistemaseguridad": 1})
+      session.commit()
+    session.close()
+  
+  def jeepStateDown(self, id: int):
+
+    db = DatabaseClient(gb.MYSQL_URL)
+    with Session(db.engine) as session:
+      session.query(mysql_models.TodoTerreno).filter(mysql_models.TodoTerreno.id==id).update({"sistemaseguridad": 0})
+      session.commit()
+      session.close()
+  
+  def check_electricity(self):
+
+    for recinto in self.get_recintos():
+      if(recinto.state==False):
+        return False
+    return True
+  
+  def check_status(self):
+    
+    if(self.dangerousness() and self.jeepsEnRuta()):
+        self.jeepStateUp()
+        response = {"alerta": "maxima", "recintos": self.get_recintos(), "jeeps": self.get_jeeps()}
+
+    elif(self.dangerousness()):
+      response = {"alerta": "media", "recintos": self.get_recintos(), "jeeps": self.get_jeeps()}
+    
+    elif(not self.check_electricity()):
+      response = {"alerta": "baja", "recintos": self.get_recintos(), "jeeps": self.get_jeeps()}
+    
+    else:
+      response = {"alerta": "normal", "recintos": self.get_recintos(), "jeeps": self.get_jeeps()}
+    
+    return response
+  
+  def status(self):
+    """
+    Checks park status
+    """
+    return self.check_status()
+  
+  def quit_electricity(self, body: models.GetRequest):
+    """
+    Remove electricity from the wall of a given enclosure
+    """
+    db = DatabaseClient(gb.MYSQL_URL)
+    with Session(db.engine) as session:
+      session.query(mysql_models.Recinto).filter(mysql_models.Recinto.id==body.id).update({"state": 0})
+      session.commit()
+      session.close()
+    
+    return self.check_status()
+  
+  def put_electricity(self, body: models.GetRequest):
+    """
+    Remove electricity from the wall of a given enclosure
+    """
+    db = DatabaseClient(gb.MYSQL_URL)
+    with Session(db.engine) as session:
+      session.query(mysql_models.Recinto).filter(mysql_models.Recinto.id==body.id).update({"state": 1})
+      session.commit()
+      session.close()
+    
+    return self.check_status()
   
   def create_recinto(self, body: models.Recinto):
     """
@@ -112,7 +232,7 @@ class Controllers:
     """
     db = DatabaseClient(gb.MYSQL_URL)
     with Session(db.engine) as session:
-      recinto: mysql_models.Dinosaur = session.query(mysql_models.Dinosaur).get(body.id)
+      recinto: mysql_models.Recinto = session.query(mysql_models.Recinto).get(body.id)
       recinto.name = body.update.name
       recinto.state = body.update.state
       session.dirty
@@ -146,7 +266,7 @@ class Controllers:
     """
     db = DatabaseClient(gb.MYSQL_URL)
     with Session(db.engine) as session:
-      todoterreno: mysql_models.Dinosaur = session.query(mysql_models.TodoTerreno).get(body.id)
+      todoterreno: mysql_models.TodoTerreno = session.query(mysql_models.TodoTerreno).get(body.id)
       todoterreno.ruta = body.update.ruta
       todoterreno.numvisitantes = body.update.numvisitantes
       todoterreno.sistemaseguridad = body.update.sistemaseguridad
