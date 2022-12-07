@@ -1,22 +1,37 @@
 from pydantic import BaseModel
-
-class DinosaurRequest(BaseModel):
+"""
+class Especie(BaseModel):
+  name:str
+  class Config:
+    orm_mode=True
+"""
+class Dinosaur(BaseModel):
+  id: int
   name: str
   species: str
   age: int
   weigh: int
-  gender: str
-  dangerousness: str
+  gender: bool
+  dangerousness: bool
+  recinto: int
+  class Config:
+    orm_mode=True
 
-class RecintoRequest(BaseModel):
-  name: str
-  species: str
-  state: bool
-
-class TodoTerrenoRequest(BaseModel):
+class TodoTerreno(BaseModel):
+  id:int
   ruta: bool
   numvisitantes: int
   sistemaseguridad: bool
+  class Config:
+    orm_mode=True
+
+class Recinto(BaseModel):
+  id: int
+  name: str
+  state: bool
+  dinosaurs: list[Dinosaur]
+  class Config:
+    orm_mode=True
 
 class GetRequest(BaseModel):
   id:int
@@ -24,6 +39,14 @@ class GetRequest(BaseModel):
 class DeleteRequest(BaseModel):
   id: int
   
-class UpdateRequest(BaseModel):
+class UpdateDinosaur(BaseModel):
   id: int
-  update: DinosaurRequest
+  update: Dinosaur
+
+class UpdateRecinto(BaseModel):
+  id: int
+  update: Recinto
+
+class UpdateTodoTerreno(BaseModel):
+  id: int
+  update: TodoTerreno
