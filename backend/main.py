@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Union
 from backend.controllers.handler import Controllers
 from backend.mysql.mysql import DatabaseClient
@@ -19,8 +20,17 @@ controllers = Controllers()
 
 initialize()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8001"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-
+@app.get('/hello')
+async def status():
+  return controllers.hello()
 
 @app.get('/')
 async def status():

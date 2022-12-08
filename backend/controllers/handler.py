@@ -9,6 +9,9 @@ class Controllers:
   def __init__(self) -> None:
     pass
   
+  def hello(self):
+    return "Hello World!"
+  
   def startRuta(self, body: models.GetRequest):
     
     db = DatabaseClient(gb.MYSQL_URL)
