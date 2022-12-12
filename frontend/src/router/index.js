@@ -1,11 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import DinoMenuView from '../views/DinoMenuView.vue'
+import JeepMenuView from '../views/JeepMenuView.vue'
+import RecintoMenuView from '../views/RecintoMenuView.vue'
+
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/dinomenu',
+    name: 'dinomenu',
+    component: DinoMenuView
+  },
+  {
+    path: '/jeepmenu',
+    name: 'jeepmenu',
+    component: JeepMenuView
+  },
+  {
+    path: '/recintomenu',
+    name: 'recintomenu',
+    component: RecintoMenuView
   },
   {
     path: '/about',
