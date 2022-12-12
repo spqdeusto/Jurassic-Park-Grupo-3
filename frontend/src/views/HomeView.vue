@@ -3,6 +3,12 @@
     <img alt="Vue logo" src="../assets/jurassicparklogo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
+      <nav>
+    <router-link to="/dinomenu">DINO</router-link> |
+    <router-link to="/jeepmenu">JEEP</router-link> |
+    <router-link to="/recintomenu">RECINTO</router-link> |
+    </nav>
+
 </template>
 
 <script>
