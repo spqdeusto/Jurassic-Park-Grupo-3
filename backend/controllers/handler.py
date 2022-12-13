@@ -75,6 +75,17 @@ class Controllers:
         enRuta.append(jeep)
     
     return enRuta
+
+  def jeepsNoEnRuta(self):
+    
+    NoenRuta = []
+    jeeps = self.get_jeeps()
+
+    for jeep in jeeps:
+      if(jeep.ruta==False):
+        NoenRuta.append(jeep)
+    
+    return NoenRuta
   
   def jeepStateUp(self):
 

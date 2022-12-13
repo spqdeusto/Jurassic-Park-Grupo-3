@@ -52,6 +52,14 @@ async def get_all_recintos():
 async def get_all_jeeps():
   return controllers.get_jeeps()
 
+@app.get('/jeepsRuta')
+async def get_jeeps_ruta():
+  return controllers.jeepsEnRuta()
+
+@app.get('/jeepsNoRuta')
+async def get_jeeps_Noruta():
+  return controllers.jeepsNoEnRuta()
+
 @app.post('/jeep/ruta/up')
 async def shutdown(body: models.GetRequest):
   return controllers.startRuta(body)
@@ -59,7 +67,7 @@ async def shutdown(body: models.GetRequest):
 @app.post('/jeep/ruta/down')
 async def shutdown(body: models.GetRequest):
   return controllers.quitRuta(body)
-  
+
 @app.post('/recinto/create')
 async def create_recinto(body: models.Recinto):
   return controllers.create_recinto(body)
