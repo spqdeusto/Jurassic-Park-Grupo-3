@@ -59,9 +59,7 @@ async def shutdown(body: models.GetRequest):
 @app.post('/jeep/ruta/down')
 async def shutdown(body: models.GetRequest):
   return controllers.quitRuta(body)
-
-
-
+  
 @app.post('/recinto/create')
 async def create_recinto(body: models.Recinto):
   return controllers.create_recinto(body)
