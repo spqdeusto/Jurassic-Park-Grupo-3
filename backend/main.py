@@ -48,6 +48,10 @@ async def shutdown(body: models.GetRequest):
 async def get_all_recintos():
   return controllers.get_recintos()
 
+@app.get('/jeeps')
+async def get_all_jeeps():
+  return controllers.get_jeeps()
+
 @app.post('/jeep/ruta/up')
 async def shutdown(body: models.GetRequest):
   return controllers.startRuta(body)
