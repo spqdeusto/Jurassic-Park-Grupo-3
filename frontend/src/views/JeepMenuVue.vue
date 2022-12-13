@@ -5,15 +5,17 @@
   <button onclick="window.location.href='/'" style="float: left;width: 100px; height: 50px;" >Inicio</button>
 
   <button onclick="window.location.href='/newjeep'" style="float: center;width: 100px; height: 50px;" >Nuevo Jeep</button>
-  <h4>JEEPS disponibles en el parque:</h4>
-  <ul>
-    <li v-for="item in items" v-bind:key="item.id">
-      
-      <p>Ruta: {{ item.ruta }}</p>
-      <p>Numvisitantes: {{ item.numvisitantes }}</p>
-      <p>SistemaSeguridad: {{ item.sistemaseguridad }}</p>
-    </li>
-  </ul>
+
+  
+<!-- Este es el formulario donde se mostrará el input de opciones -->
+<form>
+  <label for="options">Seleccione el jeep que desea quitar de la ruta:</label>
+  <select id="options">
+    <option v-for="option in options" :key="option.id" :value="option.value">{{ option.id }}</option>
+  </select>
+  <button v-on:click="submitForm">Quitar</button>
+</form>
+
 </template>
 <script>
 import axios from 'axios';
@@ -22,17 +24,30 @@ export default {
   name: 'ItemList',
   data() {
     return {
-      items: []
+      options: []
     }
   },
-  created() {
-    axios.get('/jeeps')
+  methods:{
+    mounted() {
+      axios
+        .get('/jeepsRuta')
+        .then(response => (this.options = response.data))
+    },
+    submitForm() {
+      
+      axios.post('/jeep/ruta/down', {
+        //no sabia donde poner el id que le pasa al metodo de quitRuta       
+        id: this.option.id
+      })
       .then(response => {
-        this.items = response.data;
+        console.log(response);
+        this.success = "Data saved successfully";
       })
       .catch(error => {
         console.log(error);
+        this.response = "Error: " + error.response.status
       });
+    }
   }
 }
 </script>
