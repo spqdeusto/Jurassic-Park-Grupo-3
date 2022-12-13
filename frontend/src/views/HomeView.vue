@@ -9,4 +9,18 @@
 </template>
 
 
+<style>
+  .home {
+    background-image: url('../assets/jurassicpark.jpg');
+    background-size: cover;
+  }
+
+  button{
+    border-radius: 50%;
+    border: none;
+    font-weight: bold;
+  }
+</style>
+
+
 

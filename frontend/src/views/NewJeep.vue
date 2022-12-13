@@ -55,6 +55,6 @@ export default {
     width: 50%;
   }
   button {
-  color: darkred
+  color: rgb(5, 5, 5)
 }
 </style>

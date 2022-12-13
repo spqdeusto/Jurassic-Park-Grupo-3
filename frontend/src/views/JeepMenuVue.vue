@@ -56,5 +56,9 @@ export default {
 button {
   color: rgb(0, 21, 139)
 }
+.jeepmenu {
+  background-image: url('../assets/jurassicpark.jpg');
+  background-size: cover;
+}
 
 </style>
