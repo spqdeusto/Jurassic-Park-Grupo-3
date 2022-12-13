@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import DinoMenuView from '../views/DinoMenuView.vue'
 import JeepMenuVue from '../views/JeepMenuVue.vue'
 import RecintoMenuView from '../views/RecintoMenuView.vue'
-
+import NewJeep from '../views/NewJeep.vue'
 
 const routes = [
   {
@@ -25,6 +25,11 @@ const routes = [
     path: '/recintomenu',
     name: 'recintomenu',
     component: RecintoMenuView
+  },
+  {
+    path: '/newjeep',
+    name: 'newjeep',
+    component: NewJeep
   },
   {
     path: '/about',
