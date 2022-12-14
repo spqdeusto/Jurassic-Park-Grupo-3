@@ -8,10 +8,7 @@ from sqlalchemy.orm import Session
 class Controllers:
   def __init__(self) -> None:
     pass
-  
-  def hello(self):
-    return "Hello World!"
-  
+    
   def startRuta(self, body: models.GetRequest):
     
     db = DatabaseClient(gb.MYSQL_URL)
@@ -106,7 +103,7 @@ class Controllers:
       session.close()
   
   def check_electricity(self):
-
+    
     for recinto in self.get_recintos():
       if(recinto.state==False):
         return False
@@ -123,7 +120,7 @@ class Controllers:
     
     elif(not self.check_electricity()):
       response = {"alerta": "baja", "recintos": self.get_recintos(), "jeeps": self.get_jeeps()}
-    
+
     else:
       response = {"alerta": "normal", "recintos": self.get_recintos(), "jeeps": self.get_jeeps()}
     
