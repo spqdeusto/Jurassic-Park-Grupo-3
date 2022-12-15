@@ -54,11 +54,15 @@ export default {
 
 <style>
 button {
-  color: rgb(0, 21, 139)
+  color: rgb(68, 88, 198)
+}
+button:hover{
+  font-weight:900;
 }
 .jeepmenu {
   background-image: url('../assets/jurassicpark.jpg');
   background-size: cover;
 }
+
 
 </style>
