@@ -70,7 +70,7 @@ class Controllers:
     for jeep in jeeps:
       if(jeep.ruta):
         enRuta.append(jeep)
-    
+
     return enRuta
 
   def jeepsNoEnRuta(self):

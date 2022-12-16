@@ -28,10 +28,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get('/hello')
-async def status():
-  return controllers.hello()
-
 @app.get('/')
 async def status():
   return controllers.status()

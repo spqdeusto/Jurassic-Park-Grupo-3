@@ -4,6 +4,7 @@ import DinoMenuView from '../views/DinoMenuView.vue'
 import JeepMenuVue from '../views/JeepMenuVue.vue'
 import RecintoMenuView from '../views/RecintoMenuView.vue'
 import NewJeep from '../views/NewJeep.vue'
+import QuitJeepRuta from '../views/QuitJeepRuta.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/newjeep',
     name: 'newjeep',
     component: NewJeep
+  },
+  {
+    path: '/quitJeepRuta',
+    name: 'quitJeepRuta',
+    component: QuitJeepRuta
   },
 ]
 
