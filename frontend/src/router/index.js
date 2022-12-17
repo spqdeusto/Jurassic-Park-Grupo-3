@@ -9,6 +9,8 @@ import NewDino from '../views/NewDino.vue'
 import AddJeepRuta from '../views/AddJeepRuta.vue'
 import DeleteJeep from '../views/DeleteJeep.vue'
 import ModifyJeep from '../views/ModifyJeep.vue'
+import RecintoUp from '../views/RecintoUp.vue'
+import RecintoDown from '../views/RecintoDown.vue'
 
 
 const routes = [

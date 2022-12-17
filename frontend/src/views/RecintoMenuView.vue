@@ -3,7 +3,8 @@
     <h1>RECINTO MENU</h1>
   </div>
   <button onclick="window.location.href='/'" style="float: left;width: 100px; height: 50px;" >Inicio</button>
-  
+  <button onclick="window.location.href='/recintoup'" style="float: center;width: 100px; height: 50px;" >Encender sistema eléctrico</button>
+  <button onclick="window.location.href='/recintoup'" style="float: center;width: 100px; height: 50px;" >Encender sistema eléctrico</button>
     <div>
       <h1>A continuacion se muestran los jeeps en ruta:</h1>
       <div v-for="recinto in recintos" :key="recinto.id">
