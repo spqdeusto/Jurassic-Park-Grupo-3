@@ -83,7 +83,29 @@ class Controllers:
         NoenRuta.append(jeep)
     
     return NoenRuta
-  
+
+  def recintosApagados(self):
+    
+    apagados = []
+    recintos = self.get_recintos()
+
+    for recinto in recintos:
+      if(recinto.system==False):
+        apagados.append(recinto)
+    
+    return apagados
+
+  def recintosEncendidos(self):
+    
+    encendidos = []
+    recintos = self.get_recintos()
+
+    for recinto in recintos:
+      if(recinto.system==True):
+        encendidos.append(recinto)
+    
+    return encendidos
+    
   def jeepStateUp(self):
 
     enRuta = self.jeepsEnRuta()

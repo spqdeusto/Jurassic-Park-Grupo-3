@@ -5,9 +5,9 @@
   <button onclick="window.location.href='/'" style="float: left;width: 100px; height: 50px;" >Inicio</button>
   
     <div>
-      <h1>A continuacion se muestran los jeeps en ruta:</h1>
+      <h3>A continuacion se muestran los recintos apagados:</h3>
       <div v-for="recinto in recintos" :key="recinto.id">
-          <h2>TodoTerreno con id: {{ recinto.id }}</h2>
+          <h4>TodoTerreno con id: {{ recinto.id }}</h4>
           <p>id: {{ recinto.id }}</p>
           <p>status: {{ recinto.status }}</p>
       </div>
@@ -17,14 +17,12 @@
           <option v-for="recinto in recintos" :key="recinto.id">{{ recinto.id }}</option>
       </select>
       <button v-on:click="upRecinto">Encender</button>
-      <button v-on:click="quitRecinto">Apagar</button>
     </div>
   </template>
   
   <script>
   
   import axios from 'axios';
-  
   export default {
     data() {
       return {
@@ -33,25 +31,11 @@
       };
     },
     methods: {
-      quitRecinto() {
-  
-        if(this.selected) {
-            const body = { id: this.selected};
-            axios.post("/recinto/down", body)
-                .then(function (response) {
-                    console.log(response)
-                })
-                .catch(function (error) {
-                    console.log(error)
-                });
-            this.getRecintos();
-        }
-      },
       upRecinto() {
   
         if(this.selected) {
             const body = { id: this.selected};
-            axios.post("/recinto/up", body)
+            axios.post("/recintosApagados", body)
                 .then(function (response) {
                     console.log(response)
                 })

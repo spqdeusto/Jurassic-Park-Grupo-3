@@ -7,13 +7,11 @@ from backend.mysql.mysql import DatabaseClient
 import backend.utils.vars as gb
 import backend.models.models as models
 
-
 def initialize() -> None:
   # initialize database
   dbClient = DatabaseClient(gb.MYSQL_URL)
   dbClient.init_database()
   return
-
 
 app = FastAPI()
 controllers = Controllers()
@@ -44,6 +42,14 @@ async def shutdown(body: models.GetRequest):
 async def get_all_recintos():
   return controllers.get_recintos()
 
+@app.get('/recintosEncendidos')
+async def get_recintos_encendidos():
+  return controllers.recintosEncendidos()
+
+@app.get('/recintosApagados')
+async def get_recintos_apagados():
+  return controllers.recintosApagados()
+
 @app.get('/jeeps')
 async def get_all_jeeps():
   return controllers.get_jeeps()
@@ -64,8 +70,6 @@ async def shutdown(body: models.GetRequest):
 async def shutdown(body: models.GetRequest):
   return controllers.quitRuta(body)
 
-
-
 @app.post('/recinto/create')
 async def create_recinto(body: models.Recinto):
   return controllers.create_recinto(body)
@@ -78,8 +82,6 @@ async def create_dinosaur(body: models.Dinosaur):
 async def create_todoterreno(body: models.TodoTerreno):
   return controllers.create_todoterreno(body)
 
-
-
 @app.post('/recinto/delete')
 async def delete_recinto(body: models.DeleteRequest):
   return controllers.delete_recinto(body)
@@ -91,8 +93,6 @@ async def delete_dinosaur(body: models.DeleteRequest):
 @app.post('/todoterreno/delete')
 async def delete_todoterreno(body: models.DeleteRequest):
   return controllers.delete_todoterreno(body)
-
-
 
 @app.post('/recinto/update')
 async def update_recinto(body: models.UpdateRecinto):
