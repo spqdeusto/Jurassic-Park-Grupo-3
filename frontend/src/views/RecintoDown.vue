@@ -3,7 +3,6 @@
     <h1>RECINTO MENU</h1>
   </div>
   <button onclick="window.location.href='/'" style="float: left;width: 100px; height: 50px;" >Inicio</button>
-  
     <div>
       <h3>A continuacion se muestran recintos encendidos:</h3>
       <div v-for="recinto in recintos" :key="recinto.id">
@@ -16,6 +15,7 @@
       <select v-model="selected">
           <option v-for="recinto in recintos" :key="recinto.id">{{ recinto.id }}</option>
       </select>
+      <h5>Selecciona el id del recinto a apagar</h5>
       <button v-on:click="quitRecinto">Apagar</button>
     </div>
   </template>

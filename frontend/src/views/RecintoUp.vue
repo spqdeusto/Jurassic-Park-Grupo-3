@@ -16,6 +16,7 @@
       <select v-model="selected">
           <option v-for="recinto in recintos" :key="recinto.id">{{ recinto.id }}</option>
       </select>
+      <h5>Selecciona el id del recinto a encender</h5>
       <button v-on:click="upRecinto">Encender</button>
     </div>
   </template>
