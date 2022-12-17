@@ -1,8 +1,10 @@
 <template>
+  <button onclick="window.location.href='/'" style="float: left;width: 100px; height: 50px;" >Inicio</button>
+  <button onclick="window.location.href='/jeepmenu'" style="float: left;width: 100px; height: 50px;" >Menu Jeep</button>
     <div>
-      <h1>A continuacion se muestran los jeeps en ruta:</h1>
+      <h3>A continuacion se muestran los jeeps en ruta:</h3>
       <div v-for="todoTerreno in todoTerrenos" :key="todoTerreno.id">
-          <h2>TodoTerreno con id: {{ todoTerreno.id }}</h2>
+          <h4>TodoTerreno con id: {{ todoTerreno.id }}</h4>
           <p>id: {{ todoTerreno.id }}</p>
           <p>ruta: {{ todoTerreno.ruta }}</p>
           <p>numero de visitantes: {{ todoTerreno.numvisitantes }}</p>

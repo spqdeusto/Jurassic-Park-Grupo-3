@@ -5,73 +5,16 @@
   <button onclick="window.location.href='/'" style="float: left;width: 100px; height: 50px;" >Inicio</button>
 
   <button onclick="window.location.href='/newjeep'" style="float: center;width: 100px; height: 50px;" >Nuevo Jeep</button>
-
-  
-<!-- Quitar un jeep de ruta-->
-
-  <div>
-    <h3>A continuacion se muestran los jeeps en ruta:</h3>
-    <div v-for="todoTerreno in todoTerrenos" :key="todoTerreno.id">
-        <h4>TodoTerreno con id: {{ todoTerreno.id }}</h4>
-        <p>id: {{ todoTerreno.id }}</p>
-        <p>ruta: {{ todoTerreno.ruta }}</p>
-        <p>numero de visitantes: {{ todoTerreno.numvisitantes }}</p>
-    </div>
-  </div>
-  <div>
-    <select v-model="selected">
-        <option v-for="todoTerreno in todoTerrenos" :key="todoTerreno.id">{{ todoTerreno.id }}</option>
-    </select>
-    <button v-on:click="quitJeepRuta">Quitar</button>
-  </div>
-
+  <button onclick="window.location.href='/deleteJeep'" style="float: center;width: 100px; height: 50px;" >Borrar Jeep</button>
+  <button onclick="window.location.href='/modifyJeep'" style="float: center;width: 100px; height: 50px;" >Modificar Jeep</button>
+  <button onclick="window.location.href='/quitJeepRuta'" style="float: center;width: 100px; height: 50px;" >Quitar Ruta</button>
+  <button onclick="window.location.href='/addJeepRuta'" style="float: center;width: 100px; height: 50px;" >Añadir Ruta</button>
 
 </template>
-<script>
-  
-  import axios from 'axios';
-  
-  export default {
-    data() {
-      return {
-        todoTerrenos: [],
-        selected: null
-      };
-    },
-    methods: {
-      quitJeepRuta() {
-  
-        if(this.selected) {
-            const body = { id: this.selected};
-            axios.post("/jeep/ruta/down", body)
-              .then(function (response) {
-                  console.log(response)
-              })
-              .catch(function (error) {
-                  console.log(error)
-              });
-              alert("Jeep con id: "+this.selected+" fuera de ruta!")
-              this.getTodoterrenos();
-        }
-      },
-      getTodoterrenos() {
-            axios.get('/jeepsRuta').then((res) => {
-              this.todoTerrenos = res.data;
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-      }
-    },
-    created() {
-      this.getTodoterrenos();
-    }
-  };
-  </script>
 
 <style>
 button {
-  color: rgb(68, 88, 198)
+  color: rgb(2, 3, 12)
 }
 button:hover{
   font-weight:900;
