@@ -36,7 +36,7 @@ class Controllers:
     with Session(db.engine) as session:
       recintos = session.query(mysql_models.Recinto).all()
       for recinto in recintos:
-        recinto.dinosaurs = list(session.query(mysql_models.Dinosaur).where(mysql_models.Dinosaur.id==recinto.id))
+        recinto.dinosaurs = list(session.query(mysql_models.Dinosaur).where(mysql_models.Dinosaur.recinto==recinto.id))
       session.close()
 
     return recintos
