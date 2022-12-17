@@ -25,25 +25,48 @@
           <option>Galliminus</option>
           <option>Triceratops</option>
       </select>
-        <div v-if="type === 'Dilophosaurus'">        
+        <div v-if="type === 'Dilophosaurus'">     
+        
+
+        
+         
           El dinosaurio seleccionado es peligroso.
         </div>
         <div v-if="type === 'T-Rex'">
+         <div class="container">
+          <img alt="Vue logo" src="../assets/trex.png" align="center" width="200" height="150">
+          </div>
           El dinosaurio seleccionado es peligroso.
         </div>
         <div v-if="type === 'Velociraptor'">
+         <div class="container">
+          <img alt="Vue logo" src="../assets/velociraptor.png" align="center" width="200" height="150">
+          </div>
           El dinosaurio seleccionado es peligroso.
         </div>
         <div v-if="type === 'Brachiosaurus'">
+         
+
+
+
           El dinosaurio seleccionado es pacifico.
         </div>
         <div v-if="type === 'Parasaulophus'">
+          <div class="container">
+          <img alt="Vue logo" src="../assets/para.jpg" align="center" width="200" height="150">
+          </div>
           El dinosaurio seleccionado es pacifico.
         </div>
         <div v-if="type === 'Galliminus'">
+         <div class="container">
+          <img alt="Vue logo" src="../assets/galli.png" align="center" width="200" height="150">
+          </div>
           El dinosaurio seleccionado es pacifico.
         </div>
         <div v-if="type === 'Triceratops'">
+         <div class="container">
+          <img alt="Vue logo" src="../assets/trice.jpg" align="center" width="200" height="150">
+          </div>
           El dinosaurio seleccionado es pacifico.
         </div>
       </div>
@@ -127,6 +150,11 @@ button {
 .newdino {
   background-image: url('../assets/jurassicpark.jpg');
   background-size: cover;
+}
+
+.container {
+  width : 100 vw;
+  height : 100 vh;
 }
 
 </style>
