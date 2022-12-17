@@ -5,6 +5,7 @@ import JeepMenuVue from '../views/JeepMenuVue.vue'
 import RecintoMenuView from '../views/RecintoMenuView.vue'
 import NewJeep from '../views/NewJeep.vue'
 import QuitJeepRuta from '../views/QuitJeepRuta.vue'
+import NewDino from '../views/NewDino.vue'
 
 const routes = [
   {
@@ -37,6 +38,13 @@ const routes = [
     name: 'quitJeepRuta',
     component: QuitJeepRuta
   },
+  {
+    path: '/newdino',
+    name: 'newdino',
+    component: NewDino
+  },
+
+
 ]
 
 const router = createRouter({
