@@ -35,6 +35,9 @@ export default {
           console.log(error)
       });
       alert("Jeep creado correctamente!")
+      this.ruta="";
+      this.numvisitantes="";
+      this
     }
   }
 }

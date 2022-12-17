@@ -9,6 +9,14 @@ class Controllers:
   def __init__(self) -> None:
     pass
     
+  def get_dinos(self):
+
+    db = DatabaseClient(gb.MYSQL_URL)
+    with Session(db.engine) as session:
+      dinos = session.query(mysql_models.Dinosaur).all()
+      session.close()
+
+    return dinos
   def startRuta(self, body: models.GetRequest):
     
     db = DatabaseClient(gb.MYSQL_URL)

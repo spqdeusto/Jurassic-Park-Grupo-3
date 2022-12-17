@@ -8,10 +8,9 @@ import QuitJeepRuta from '../views/QuitJeepRuta.vue'
 import NewDino from '../views/NewDino.vue'
 import AddJeepRuta from '../views/AddJeepRuta.vue'
 import DeleteJeep from '../views/DeleteJeep.vue'
-import ModifyJeep from '../views/ModifyJeep.vue'
 import RecintoUp from '../views/RecintoUp.vue'
 import RecintoDown from '../views/RecintoDown.vue'
-
+import DeleteDino from '../views/DeleteDino.vue'
 
 const routes = [
   {
@@ -70,9 +69,9 @@ const routes = [
     component: DeleteJeep
   },
   {
-    path: '/modifyJeep',
-    name: 'modifyJeep',
-    component: ModifyJeep
+    path: '/deleteDino',
+    name: 'deleteDino',
+    component: DeleteDino
   },
 
 

@@ -6,7 +6,6 @@
 
   <button onclick="window.location.href='/newjeep'" style="float: center;width: 100px; height: 50px;" >Nuevo Jeep</button>
   <button onclick="window.location.href='/deleteJeep'" style="float: center;width: 100px; height: 50px;" >Borrar Jeep</button>
-  <button onclick="window.location.href='/modifyJeep'" style="float: center;width: 100px; height: 50px;" >Modificar Jeep</button>
   <button onclick="window.location.href='/quitJeepRuta'" style="float: center;width: 100px; height: 50px;" >Quitar Ruta</button>
   <button onclick="window.location.href='/addJeepRuta'" style="float: center;width: 100px; height: 50px;" >Añadir Ruta</button>
 

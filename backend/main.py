@@ -30,6 +30,10 @@ app.add_middleware(
 async def status():
   return controllers.status()
 
+@app.get('/dinos')
+async def get_all_dinos():
+  return controllers.get_dinos()
+
 @app.post('/recinto/down')
 async def shutdown(body: models.GetRequest):
   return controllers.quit_electricity(body)
