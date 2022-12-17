@@ -31,19 +31,14 @@ export default {
   },
   methods: {
     submitForm() {
-      axios.post('/todoterreno/create', {
-        ruta: this.ruta,
-        numvisitantes: this.numvisitantes,
-        sistemaseguridad: this.sistemaseguridad
-      })
-      .then(response => {
-        console.log(response);
-        this.success = "Data saved successfully";
-      })
-      .catch(error => {
-        console.log(error);
-        this.response = "Error: " + error.response.status
-      });
+      const body = { ruta: this.ruta, numvisitantes: this.numvisitantes, sistemaseguridad: this.sistemaseguridad};
+      axios.post("/todoterreno/create", body)
+      .then(function (response) {
+                    console.log(response)
+                })
+                .catch(function (error) {
+                    console.log(error)
+                });
     }
   }
 }
