@@ -6,6 +6,10 @@ import RecintoMenuView from '../views/RecintoMenuView.vue'
 import NewJeep from '../views/NewJeep.vue'
 import QuitJeepRuta from '../views/QuitJeepRuta.vue'
 import NewDino from '../views/NewDino.vue'
+import AddJeepRuta from '../views/AddJeepRuta.vue'
+import DeleteJeep from '../views/DeleteJeep.vue'
+import ModifyJeep from '../views/ModifyJeep.vue'
+
 
 const routes = [
   {
@@ -43,6 +47,22 @@ const routes = [
     name: 'newdino',
     component: NewDino
   },
+  {
+    path: '/addJeepRuta',
+    name: 'addJeepRuta',
+    component: AddJeepRuta
+  },
+  {
+    path: '/deleteJeep',
+    name: 'deleteJeep',
+    component: DeleteJeep
+  },
+  {
+    path: '/modifyJeep',
+    name: 'modifyJeep',
+    component: ModifyJeep
+  },
+
 
 
 ]
