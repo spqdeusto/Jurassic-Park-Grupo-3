@@ -5,28 +5,80 @@
      
     </div>
     <button onclick="window.location.href='/'" style="float: left;width: 100px; height: 50px;" >Inicio</button>
-    <button onclick="window.location.href='/newdino'" style="float: center;width: 100px; height: 50px;" >Nuevo Dino</button>    
 
+    
+     <div>
+     <p> {{ '\u00a0' }}</p>
+      <p>Nombre: {{ message }}</p>
+      <input type="message" id="name" name="name" placeholder="name" />
+      </div>
 
       <div>
-      <p> "" </p>
-      <button v-on:click="submitForm">Submit</button>
+        <p>Seleccione un dinosaurio: {{ message }}</p>
+        <select v-model="type">
+          <option disabled value="">Seleccione</option>
+          <option>Dilophosaurus</option>
+          <option>T-Rex</option>
+          <option>Velociraptor</option>
+          <option>Brachiosaurus</option>
+          <option>Parasaulophus</option>
+          <option>Galliminus</option>
+          <option>Triceratops</option>
+      </select>
+        <div v-if="type === 'Dilophosaurus'">        
+          El dinosaurio seleccionado es peligroso.
+        </div>
+        <div v-if="type === 'T-Rex'">
+          El dinosaurio seleccionado es peligroso.
+        </div>
+        <div v-if="type === 'Velociraptor'">
+          El dinosaurio seleccionado es peligroso.
+        </div>
+        <div v-if="type === 'Brachiosaurus'">
+          El dinosaurio seleccionado es pacifico.
+        </div>
+        <div v-if="type === 'Parasaulophus'">
+          El dinosaurio seleccionado es pacifico.
+        </div>
+        <div v-if="type === 'Galliminus'">
+          El dinosaurio seleccionado es pacifico.
+        </div>
+        <div v-if="type === 'Triceratops'">
+          El dinosaurio seleccionado es pacifico.
+        </div>
       </div>
-        <form id="myForm">
-        <label for="name">Nombre:</label>
-        <input type="text"  id="name" name="name"><br>
-        <label for="type">Tipo:</label>
-        <input type="text"  id="type" name="type"><br>
-        <label for="age">Edad:</label>
-        <input type="number" id="age" name="age" min="1" max="200"><br>
-        <label for="weight">Peso:</label>
-        <input type="number" id="weight" name="weight" min="1" max="2000"><br>
-        <label for="gender">Genero marcado = Masculino:</label>
-        <input type="checkbox" id="gender" name="gender"><br>
-        <label for="agressiveness">Marcado = agresivo:</label>
-        <input type="checkbox" id="agressiveness" name="agressiveness"><br><br>
-        <button v-on:click="submitForm">Submit</button>
-    </form>
+           
+      <p>Edad: {{ message }}</p>
+      <input type="number" id="age" name="age" placeholder="age" />
+
+      <p>Peso: {{ message }}</p>
+      <input type="number" id="weight" name="wieght" placeholder="weight" />
+
+     <p>  </p>
+       <label for="gender">Genero masculino:</label>
+    <input type="checkbox"  id="gender" v-model="gender"><br>
+
+       <label for="agressiveness">Agresividad:</label>
+    <input type="checkbox"  id="agressiveness" v-model="agressiveness"><br>
+
+        <div>
+        <p>Seleccione el recinto correspondiente: {{ message }}</p>
+        <select v-model="type">
+          <option disabled value="">Seleccione</option>
+          <option>Dilophosaurus</option>
+          <option>T-Rex</option>
+          <option>Velociraptor</option>
+          <option>Brachiosaurus y Parasaulophus</option>
+          <option>Galliminus</option>
+          <option>Triceratops</option>
+      </select>
+      </div>
+
+      
+      <div>
+      <button v-on:click="submit">Submit</button>
+      </div>
+  
 </template>
 
 
@@ -38,23 +90,18 @@ export default {
   data() {
     return {
       name: "",
-      type: "",
+      type: '',
       age: 0,
       weight: 0,
       gender: false,
       agressiveness: false,
+      recinto: "",
     }
   },
   methods: {
-    submitForm() {
-      axios.post('/dinosaur/create', {
-        name: this.name,
-        type: this.type,
-        age: this.age,
-        weight: this.weight,
-        gender: this.gender,
-        agressiveness: this.agressiveness,
-      })
+    submit() {
+      const body = { id: '-1', name: this.name, type: this.type, age: this.age, weight: this.weight, gender: this.gender, agressiveness: this.agressiveness, recinto: this.recinto};
+      axios.post("/dinosaur/create", body)
       .then(response => {
         console.log(response);
         this.success = "Data saved successfully";
@@ -63,6 +110,7 @@ export default {
         console.log(error);
         this.response = "Error: " + error.response.status
       });
+       alert("Dino creado correctamente!")
     }
   }
 }
