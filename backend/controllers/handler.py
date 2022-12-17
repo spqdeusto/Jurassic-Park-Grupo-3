@@ -228,6 +228,7 @@ class Controllers:
     """
     Deletes todoterreno by its UID
     """
+    print(body)
     db = DatabaseClient(gb.MYSQL_URL)
     with Session(db.engine) as session:
       todoterrenoToBeDeleted = session.query(mysql_models.TodoTerreno).get(body.id)

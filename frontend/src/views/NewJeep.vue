@@ -5,15 +5,12 @@
     <button onclick="window.location.href='/'" style="float: left;width: 100px; height: 50px;" >Inicio</button>
     <button onclick="window.location.href='/jeepmenu'" style="float: left;width: 100px; height: 50px;" >Menu Jeep</button>
 
-    <form id="myForm">
-        <label for="ruta">Ruta:</label>
-        <input type="checkbox"  id="ruta" name="ruta"><br>
-        <label for="numvisitantes">Numero de visitantes:</label>
-        <input type="number" id="numvisitantes" name="numvisitantes" min="1" max="5"><br>
-        <label for="sistemaseguridad">Sistema de seguridad:</label>
-        <input type="checkbox" id="sistemaseguridad" name="sistemaseguridad"><br><br>
-        <button v-on:click="submitForm">Submit</button>
-    </form>
+ 
+    <label for="ruta">Ruta:</label>
+    <input type="checkbox"  id="ruta" v-model="ruta"><br>
+    <label for="numvisitantes">Numero de visitantes:</label>
+    <input type="number" id="numvisitantes" v-model="numvisitantes" min="1" max="5"><br>
+    <button v-on:click="submit">Submit</button>
 
   </template>
 
@@ -21,24 +18,23 @@
 import axios from 'axios';
 
 export default {
-  name: 'NewJeepForm',
   data() {
     return {
       ruta: false,
-      numvisitantes: 0,
-      sistemaseguridad: false
+      numvisitantes: 1,
     }
   },
   methods: {
-    submitForm() {
-      const body = { ruta: this.ruta, numvisitantes: this.numvisitantes, sistemaseguridad: this.sistemaseguridad};
+    submit() {
+      const body = { id: '-1', ruta: this.ruta, numvisitantes: this.numvisitantes, sistemaseguridad: false};
       axios.post("/todoterreno/create", body)
       .then(function (response) {
-                    console.log(response)
-                })
-                .catch(function (error) {
-                    console.log(error)
-                });
+          console.log(response)
+      })
+      .catch(function (error) {
+          console.log(error)
+      });
+      alert("Jeep creado correctamente!")
     }
   }
 }

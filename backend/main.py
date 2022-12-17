@@ -64,6 +64,8 @@ async def shutdown(body: models.GetRequest):
 async def shutdown(body: models.GetRequest):
   return controllers.quitRuta(body)
 
+
+
 @app.post('/recinto/create')
 async def create_recinto(body: models.Recinto):
   return controllers.create_recinto(body)
@@ -80,15 +82,15 @@ async def create_todoterreno(body: models.TodoTerreno):
 
 @app.post('/recinto/delete')
 async def delete_recinto(body: models.DeleteRequest):
-  return controllers.delete_recinto(body.id)
+  return controllers.delete_recinto(body)
 
 @app.post('/dinosaur/delete')
 async def delete_dinosaur(body: models.DeleteRequest):
-  return controllers.delete_dinosaur(body.id)
+  return controllers.delete_dinosaur(body)
 
 @app.post('/todoterreno/delete')
 async def delete_todoterreno(body: models.DeleteRequest):
-  return controllers.delete_todoterreno(body.id)
+  return controllers.delete_todoterreno(body)
 
 
 

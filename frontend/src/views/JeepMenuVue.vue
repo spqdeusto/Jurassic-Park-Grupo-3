@@ -44,13 +44,14 @@
         if(this.selected) {
             const body = { id: this.selected};
             axios.post("/jeep/ruta/down", body)
-                .then(function (response) {
-                    console.log(response)
-                })
-                .catch(function (error) {
-                    console.log(error)
-                });
-            this.getTodoterrenos();
+              .then(function (response) {
+                  console.log(response)
+              })
+              .catch(function (error) {
+                  console.log(error)
+              });
+              alert("Jeep con id: "+this.selected+" fuera de ruta!")
+              this.getTodoterrenos();
         }
       },
       getTodoterrenos() {
