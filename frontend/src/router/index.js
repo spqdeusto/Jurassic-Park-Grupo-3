@@ -33,6 +33,16 @@ const routes = [
     component: RecintoMenuView
   },
   {
+    path: '/recintoup',
+    name: 'recintoup',
+    component: RecintoUp
+  },
+  {
+    path: '/recintodown',
+    name: 'recintodown',
+    component: RecintoDown
+  },
+  {
     path: '/newjeep',
     name: 'newjeep',
     component: NewJeep
