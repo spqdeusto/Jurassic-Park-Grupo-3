@@ -26,29 +26,27 @@
           <option>Triceratops</option>
       </select>
         <div v-if="species === 'Dilophosaurus'">     
-        
-
-        
-         
+        <div class="container">
+          <img alt="Vue logo" src="../assets/dilo.jpg" align="center" width="200" height="150">
+          </div>
           El dinosaurio seleccionado es peligroso.
         </div>
         <div v-if="species === 'T-Rex'">
          <div class="container">
-          <img alt="Vue logo" src="../assets/trex.png" align="center" width="200" height="150">
+          <img alt="Vue logo" src="../assets/trex.png" align="center" width="170" height="150">
           </div>
           El dinosaurio seleccionado es peligroso.
         </div>
         <div v-if="species === 'Velociraptor'">
          <div class="container">
-          <img alt="Vue logo" src="../assets/velociraptor.png" align="center" width="200" height="150">
+          <img alt="Vue logo" src="../assets/velociraptor.png" align="center" width="180" height="150">
           </div>
           El dinosaurio seleccionado es peligroso.
         </div>
         <div v-if="species === 'Brachiosaurus'">
-         
-
-
-
+         <div class="container">
+          <img alt="Vue logo" src="../assets/brachi.jpg" align="center" width="200" height="150">
+          </div>
           El dinosaurio seleccionado es pacifico.
         </div>
         <div v-if="species === 'Parasaulophus'">
