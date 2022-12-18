@@ -9,7 +9,7 @@
     <label for="ruta">Ruta:</label>
     <input type="checkbox"  id="ruta" v-model="ruta"><br>
     <label for="numvisitantes">Numero de visitantes:</label>
-    <input type="number" id="numvisitantes" v-model="numvisitantes" min="1" max="5"><br>
+    <input type="number" id="numvisitantes" v-model="numvisitantes" min="2" max="5"><br>
     <button v-on:click="submit">Submit</button>
 
   </template>
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       ruta: false,
-      numvisitantes: 1,
+      numvisitantes: 2,
     }
   },
   methods: {
@@ -35,9 +35,6 @@ export default {
           console.log(error)
       });
       alert("Jeep creado correctamente!")
-      this.ruta="";
-      this.numvisitantes="";
-      this
     }
   }
 }

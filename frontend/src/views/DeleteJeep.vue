@@ -42,6 +42,7 @@
                 .catch(function (error) {
                     console.log(error)
                 });
+            alert("Jeep eliminado correctamente")
             this.getTodoterrenos();
         }
       },

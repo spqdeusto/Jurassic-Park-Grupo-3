@@ -41,6 +41,7 @@
                 .catch(function (error) {
                     console.log(error)
                 });
+            alert("Jeep fuera de ruta")
             this.getTodoterrenos();
         }
       },

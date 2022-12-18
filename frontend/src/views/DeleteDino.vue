@@ -40,6 +40,7 @@
                 .catch(function (error) {
                     console.log(error)
                 });
+            alert("Dinosaurio borrado correctamente");
             this.getDinos();
         }
       },

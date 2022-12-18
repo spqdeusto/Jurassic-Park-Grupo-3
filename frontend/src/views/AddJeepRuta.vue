@@ -41,6 +41,7 @@
                   .catch(function (error) {
                       console.log(error)
                   });
+              alert("Jeep en ruta")
               this.getTodoterrenos();
           }
         },
