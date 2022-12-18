@@ -10,12 +10,12 @@
      <div>
      <p> {{ '\u00a0' }}</p>
       <p>Nombre: {{ message }}</p>
-      <input type="message" id="name" name="name" placeholder="name" />
+      <input type="message" id="name" name="name" placeholder="name" v-model="name"/>
       </div>
 
       <div>
         <p>Seleccione un dinosaurio: {{ message }}</p>
-        <select v-model="type">
+        <select v-model="species">
           <option disabled value="">Seleccione</option>
           <option>Dilophosaurus</option>
           <option>T-Rex</option>
@@ -25,45 +25,45 @@
           <option>Galliminus</option>
           <option>Triceratops</option>
       </select>
-        <div v-if="type === 'Dilophosaurus'">     
+        <div v-if="species === 'Dilophosaurus'">     
         
 
         
          
           El dinosaurio seleccionado es peligroso.
         </div>
-        <div v-if="type === 'T-Rex'">
+        <div v-if="species === 'T-Rex'">
          <div class="container">
           <img alt="Vue logo" src="../assets/trex.png" align="center" width="200" height="150">
           </div>
           El dinosaurio seleccionado es peligroso.
         </div>
-        <div v-if="type === 'Velociraptor'">
+        <div v-if="species === 'Velociraptor'">
          <div class="container">
           <img alt="Vue logo" src="../assets/velociraptor.png" align="center" width="200" height="150">
           </div>
           El dinosaurio seleccionado es peligroso.
         </div>
-        <div v-if="type === 'Brachiosaurus'">
+        <div v-if="species === 'Brachiosaurus'">
          
 
 
 
           El dinosaurio seleccionado es pacifico.
         </div>
-        <div v-if="type === 'Parasaulophus'">
+        <div v-if="species === 'Parasaulophus'">
           <div class="container">
           <img alt="Vue logo" src="../assets/para.jpg" align="center" width="200" height="150">
           </div>
           El dinosaurio seleccionado es pacifico.
         </div>
-        <div v-if="type === 'Galliminus'">
+        <div v-if="species === 'Galliminus'">
          <div class="container">
           <img alt="Vue logo" src="../assets/galli.png" align="center" width="200" height="150">
           </div>
           El dinosaurio seleccionado es pacifico.
         </div>
-        <div v-if="type === 'Triceratops'">
+        <div v-if="species === 'Triceratops'">
          <div class="container">
           <img alt="Vue logo" src="../assets/trice.jpg" align="center" width="200" height="150">
           </div>
@@ -72,10 +72,10 @@
       </div>
            
       <p>Edad: {{ message }}</p>
-      <input type="number" id="age" name="age" placeholder="age" />
+      <input type="number" id="age" name="age" placeholder="age" v-model="age"/>
 
       <p>Peso: {{ message }}</p>
-      <input type="number" id="weight" name="wieght" placeholder="weight" />
+      <input type="number" id="weight" name="wieght" placeholder="weight" v-model="weigh"/>
 
      <p>  </p>
        <label for="gender">Genero masculino:</label>
@@ -84,19 +84,15 @@
        <label for="agressiveness">Agresividad:</label>
     <input type="checkbox"  id="agressiveness" v-model="agressiveness"><br>
 
-        <div>
-        <p>Seleccione el recinto correspondiente: {{ message }}</p>
-        <select v-model="type">
-          <option disabled value="">Seleccione</option>
-          <option>Dilophosaurus</option>
-          <option>T-Rex</option>
-          <option>Velociraptor</option>
-          <option>Brachiosaurus y Parasaulophus</option>
-          <option>Galliminus</option>
-          <option>Triceratops</option>
-      </select>
+      <div v-if="!recintos.length">
+          <p>No es posible crear dinosaurios porque no hay recintos disponibles</p>
       </div>
-
+      <div v-for="recinto_ in recintos" :key="recinto_.id">
+        <p>Seleccione el recinto correspondiente: {{ message }}</p>
+        <select v-model="recinto">
+          <option>{{ recinto_.id }}</option>
+        </select>
+      </div>
       
       <div>
       <button v-on:click="submit">Submit</button>
@@ -113,28 +109,45 @@ export default {
   data() {
     return {
       name: "",
-      type: '',
+      species: '',
       age: 0,
-      weight: 0,
+      weigh: 0,
       gender: false,
-      agressiveness: false,
-      recinto: "",
+      dangerousness: false,
+      recinto: null,
+      recintos: []
     }
   },
   methods: {
+
     submit() {
-      const body = { id: '-1', name: this.name, type: this.type, age: this.age, weight: this.weight, gender: this.gender, agressiveness: this.agressiveness, recinto: this.recinto};
-      axios.post("/dinosaur/create", body)
-      .then(response => {
-        console.log(response);
-        this.success = "Data saved successfully";
+      if(this.recinto) {
+        const body = { id: '-1', name: this.name, species: this.species, age: this.age, weigh: this.weigh, gender: this.gender, dangerousness: this.dangerousness, recinto: Number(this.recinto)};
+        console.log(body)
+        axios.post("/dinosaur/create", body)
+        .then(response => {
+          console.log(response);
+          this.success = "Data saved successfully";
+        })
+        .catch(error => {
+          console.log(error);
+          this.response = "Error: " + error.response.status
+        });
+        alert("Dino creado correctamente!")
+      }
+    },
+
+    getRecintos() {
+      axios.get('/recintos').then((res) => {
+        this.recintos = res.data;
       })
-      .catch(error => {
-        console.log(error);
-        this.response = "Error: " + error.response.status
+      .catch((error) => {
+        console.error(error);
       });
-       alert("Dino creado correctamente!")
     }
+  },
+  created() {
+    this.getRecintos();
   }
 }
 </script>

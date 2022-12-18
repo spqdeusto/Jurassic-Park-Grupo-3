@@ -204,6 +204,7 @@ class Controllers:
     """
     Creates new dinosaur in the database
     """
+    print(body)
     body_row = mysql_models.Dinosaur(name=body.name, species=body.species, age=body.age, weigh=body.weigh, gender=body.gender, dangerousness=body.dangerousness, recinto=body.recinto)
     
     db = DatabaseClient(gb.MYSQL_URL)
