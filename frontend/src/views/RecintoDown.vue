@@ -6,7 +6,7 @@
     <div>
       <h3>A continuacion se muestran recintos encendidos:</h3>
       <div v-for="recinto in recintos" :key="recinto.id">
-          <h4>TodoTerreno con id: {{ recinto.id }}</h4>
+          <h4>Recinto id: {{ recinto.id }}</h4>
           <p>id: {{ recinto.id }}</p>
           <p>status: {{ recinto.status }}</p>
       </div>
@@ -42,6 +42,7 @@
                 .catch(function (error) {
                     console.log(error)
                 });
+                alert("Valla electrica desactivada!")
             this.getRecintos();
         }
       },
