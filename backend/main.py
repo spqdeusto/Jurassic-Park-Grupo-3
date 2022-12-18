@@ -28,7 +28,7 @@ app.add_middleware(
 
 @app.get('/')
 async def status():
-  return controllers.status()
+  return controllers.check_status()
 
 @app.get('/dinos')
 async def get_all_dinos():

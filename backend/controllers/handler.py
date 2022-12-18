@@ -15,8 +15,8 @@ class Controllers:
     with Session(db.engine) as session:
       dinos = session.query(mysql_models.Dinosaur).all()
       session.close()
-
     return dinos
+
   def startRuta(self, body: models.GetRequest):
     
     db = DatabaseClient(gb.MYSQL_URL)
@@ -25,7 +25,7 @@ class Controllers:
       session.commit()
       session.close()
     
-    return self.check_status()
+    return {"status": "ok"}
   
   def quitRuta(self, body: models.GetRequest):
     
@@ -36,7 +36,7 @@ class Controllers:
       session.close()
     self.jeepStateDown(body.id)
     
-    return self.check_status()
+    return {"status": "ok"}
   
   def get_recintos(self):
 
@@ -123,6 +123,18 @@ class Controllers:
         session.query(mysql_models.TodoTerreno).filter(mysql_models.TodoTerreno.id==jeep.id).update({"sistemaseguridad": 1})
       session.commit()
     session.close()
+    return {"status": "ok"}
+
+  def jeepStateDownAll(self):
+
+    enRuta = self.jeepsEnRuta()
+    db = DatabaseClient(gb.MYSQL_URL)
+    with Session(db.engine) as session:
+      for jeep in enRuta:
+        session.query(mysql_models.TodoTerreno).filter(mysql_models.TodoTerreno.id==jeep.id).update({"sistemaseguridad": 0})
+      session.commit()
+    session.close()
+    return {"status": "ok"}
   
   def jeepStateDown(self, id: int):
 
@@ -131,6 +143,7 @@ class Controllers:
       session.query(mysql_models.TodoTerreno).filter(mysql_models.TodoTerreno.id==id).update({"sistemaseguridad": 0})
       session.commit()
       session.close()
+    return {"status": "ok"}
   
   def check_electricity(self):
     
@@ -149,18 +162,14 @@ class Controllers:
       response = {"alerta": "media", "recintos": self.get_recintos(), "jeeps": self.get_jeeps()}
     
     elif(not self.check_electricity()):
+      self.jeepStateDownAll()
       response = {"alerta": "baja", "recintos": self.get_recintos(), "jeeps": self.get_jeeps()}
 
     else:
+      self.jeepStateDownAll()
       response = {"alerta": "normal", "recintos": self.get_recintos(), "jeeps": self.get_jeeps()}
     
     return response
-  
-  def status(self):
-    """
-    Checks park status
-    """
-    return self.check_status()
   
   def quit_electricity(self, body: models.GetRequest):
     """
@@ -172,7 +181,7 @@ class Controllers:
       session.commit()
       session.close()
     
-    return self.check_status()
+    return {"status": "ok"}
   
   def put_electricity(self, body: models.GetRequest):
     """

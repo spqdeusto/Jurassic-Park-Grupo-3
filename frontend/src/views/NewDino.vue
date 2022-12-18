@@ -82,15 +82,15 @@
     <input type="checkbox"  id="gender" v-model="gender"><br>
 
        <label for="agressiveness">Agresividad:</label>
-    <input type="checkbox"  id="agressiveness" v-model="agressiveness"><br>
+    <input type="checkbox"  id="agressiveness" v-model="dangerousness"><br>
 
       <div v-if="!recintos.length">
           <p>No es posible crear dinosaurios porque no hay recintos disponibles</p>
       </div>
-      <div v-for="recinto_ in recintos" :key="recinto_.id">
+      <div>
         <p>Seleccione el recinto correspondiente: {{ message }}</p>
         <select v-model="recinto">
-          <option>{{ recinto_.id }}</option>
+          <option v-for="recinto_ in recintos" :key="recinto_.id">{{ recinto_.id }}</option>
         </select>
       </div>
       
@@ -127,13 +127,11 @@ export default {
         axios.post("/dinosaur/create", body)
         .then(response => {
           console.log(response);
-          this.success = "Data saved successfully";
         })
         .catch(error => {
           console.log(error);
-          this.response = "Error: " + error.response.status
         });
-        alert("Dino creado correctamente!")
+        alert("Dino creado correctamente!");
       }
     },
 
